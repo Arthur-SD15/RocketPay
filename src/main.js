@@ -7,10 +7,9 @@ const ccLogo = document.querySelector(".cc-logo span:nth-child(2) img")
 
 function setCardType(type) {
   const colors = {
-    visa: ["#436D99", "#2D57F2"],
+    visa: ["#2f557e", "#1137be"],
     mastercard: ["#DF6F29", "#C69347"],
-    cielo: ["#", "#"],
-    hipercard: ["#", "#"],
+    elo: ["#27A0B1", "#1b5b68"],
     default: ["black", "gray"],
   }
 
@@ -58,6 +57,11 @@ const cardNumberPattern = {
     },
     {
       mask: "0000 0000 0000 0000",
+      regex: /^(?:6(?:5\d{0,2}|4[4-9]\d)|6011)\d{0,12}/,
+      cardtype: "elo",
+    },
+    {
+      mask: "0000 0000 0000 0000",
       cardtype: "default",
     },
   ],
@@ -72,7 +76,25 @@ const cardNumberPattern = {
 const cardNumberMasked = IMask(cardNumber, cardNumberPattern)
 
 const addButton = document.querySelector("#add-card")
-addButton.addEventListener("click", () => {})
+addButton.addEventListener("click", () => {
+  if (
+    cardNumberMasked.masked.isComplete &&
+    expirationDateMasked.masked.isComplete &&
+    securityCodeMasked.masked.isComplete
+  ) {
+    const cardType = cardNumberMasked.masked.currentMask.cardtype
+
+    if (cardType !== "default") {
+      if (window.confirm("Deseja adicionar o cartão?")) {
+        window.location.href = "/"
+      }
+    } else {
+      alert("O tipo do cartão é inválido")
+    }
+  } else {
+    alert("Por favor, preencha todos os campos corretamente.")
+  }
+})
 
 document.querySelector("form").addEventListener("submit", (event) => {
   event.preventDefault()
@@ -80,6 +102,9 @@ document.querySelector("form").addEventListener("submit", (event) => {
 
 const cardHolder = document.querySelector("#card-holder")
 cardHolder.addEventListener("input", () => {
+  const inputValue = cardHolder.value
+  const filteredValue = inputValue.replace(/[^a-zA-Z\s]/g, "")
+  cardHolder.value = filteredValue
   const ccHolder = document.querySelector(".cc-holder .value")
   ccHolder.innerText =
     cardHolder.value.length === 0 ? "LUIZ ANTÔNIO DA SILVA" : cardHolder.value
