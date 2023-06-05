@@ -26,7 +26,38 @@ O RocketPay é uma aplicação inovadora que simplifica o preenchimento de formu
 Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/gpqavL469k0pPUGOmAQEM9/Explorer-Lab-%2301/duplicate). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 ## 🧠 Aprendizado
+    
+Na primeira aula, consegui aprender algumas ideias novas e aperfeiçoar alguns conceitos. Durante a aula, obtive entendimento sobre alguns conceitos de DOM, que é a representação do nosso documento HTML como um objeto JavaScript. Todos os objetos JavaScript possuem propriedades (atributos) e funcionalidades (métodos). Utilizamos o DOM para manipular o HTML com JavaScript.
+    
+Durante a primeira aula, também consegui relembrar alguns conceitos, como o de selecionar um elemento HTML específico usando JavaScript, que é feito por meio do método document.querySelector(). Veja:
 
+```bash
+// Seleciona o primeiro elemento path dentro de um svg, o primeiro path dentro do segundo g dentro do primeiro g que possui a classe .cc-bg
+const ccBgColor01 = document.querySelector(".cc-bg svg > g g:nth-child(1) path")
+    
+// Seleciona o primeiro elemento path dentro de um svg, o segundo path dentro do segundo g dentro do primeiro g que possui a classe .cc-bg
+const ccBgColor02 = document.querySelector(".cc-bg svg > g g:nth-child(2) path")
+```
+ 
+Utilizamos a função setCardType(type) que é definida com um parâmetro type. Essa função é usada para definir o tipo de cartão de crédito e ajustar a aparência correspondente. Em seguida, é declarado um objeto colors que mapeia diferentes tipos de cartão de crédito a cores específicas.  Dentro da função setCardType(type), o método setAttribute() é usado para alterar o atributo fill dos elementos selecionados. setAttribute("fill", colors[type][0]) define a cor de preenchimento do primeiro elemento selecionado (ccBgColor01), e setAttribute("fill", colors[type][1]) define a cor de preenchimento do segundo elemento selecionado (ccBgColor02).
+    
+Na segunda aula, aprendi sobre o IMask, uma ferramenta utilizada para padronizar dados. Também explorei o uso de expressões regulares, que permitem buscar padrões dentro de um texto. Nesse contexto, utilizei regex para definir padrões relacionados a números de cartões e suas respectivas bandeiras. A seguir, são apresentados exemplos de expressões regulares:
+
+```bash
+// Bandeira Visa
+/^4\d{0,15}/
+//Inicia com '4' seguido de um dígito que pode se repetir de 0 até 15 ocorrências
+4234234423432344
+    
+// Bandeira MasterCard
+/(^5[1-5]\d{0,2}|^22[2-9]\d|^2[3-7]\d{0,2}\d{0,12})/
+//Inicia com 5, seguido de um dígito entre 1 e 5, seguido de 0 ou mais 2 dígitos. Ou, inicia com 22, seguido de um dígito entre 2 e 9, seguido de 0 ou mais 1 dígito. Ou, inicia com 2, seguido de um dígito entre 3 e 7, seguido de 0 ou mais 2 dígitos. Todos seguidos por 12 dígitos.
+5353535353535353
+2323232323232323
+2237235728362235
+```
+Dei uma grande resumida neste pequeno texto, em relação ao meu aprendizado durante o desenvolvimento dessa aplicação. No entanto, acabei deixando de fora algumas ideias novas, como a propriedade dispatch.
+    
 ## 📝 Pré-requesitos
 
 Antes de baixar o projeto você vai precisar ter instalado na sua máquina as seguintes ferramentas:
